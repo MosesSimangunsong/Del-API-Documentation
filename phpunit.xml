@@ -16,6 +16,12 @@
         <include>
             <directory>app</directory>
         </include>
+         <exclude>
+            <file>app/Helper/ApiHelper.php</file>
+            <file>app/Http/Middleware/HandleInertiaRequests.php</file>
+            <directory>app/Http/Api</directory>
+            <directory>app/Models</directory>
+        </exclude>
     </source>
     <php>
         <env name="APP_ENV" value="testing"/>

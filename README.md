@@ -1,59 +1,172 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# ITDel Starter APP
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Logs
 
-## About Laravel
+### [16-11-2025]
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+-   [Abdullah Ubaid] Inisialisasi proyek
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Quality Checks
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### Composer Audit
 
-## Learning Laravel
+Composer Audit adalah perintah Composer yang digunakan untuk memeriksa keamanan paket PHP yang terinstal di proyek.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+```bash
+composer audit
+```
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### NPM Audit
 
-## Laravel Sponsors
+NPM Audit adalah perintah NPM yang digunakan untuk memeriksa keamanan paket NodeJS yang terinstal di proyek.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+```bash
+npm audit --audit-level=moderate
+```
 
-### Premium Partners
+### Laravel Pint
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+Laravel pint untuk memeriksa dan memperbaiki format kode PHP secara otomatis.
 
-## Contributing
+#### Install Laravel Pint
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+```bash
+composer require laravel/pint --dev
+```
 
-## Code of Conduct
+#### Melakukan perbaikan format kode PHP
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+```bash
+vendor/bin/pint
+```
 
-## Security Vulnerabilities
+### Eslint
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+ESLint adalah tools analisis kode statis untuk JavaScript dan TypeScript yang berfungsi mendeteksi error, menjaga konsistensi style, dan menerapkan best practices dalam penulisan kode
 
-## License
+```bash
+npx eslint . --format table
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+#### Melakukan pengecekan format kode PHP
+
+```bash
+vendor/bin/pint --test
+```
+
+### Larastan
+
+Larastan adalah static code analysis tool yang menganalisis kode PHP Laravel tanpa harus menjalankannya.
+
+#### Membuatuhkan file: phpstan.neon
+
+```bash
+includes:
+    - ./vendor/larastan/larastan/extension.neon
+
+parameters:
+    level: 8 # Level 1 - 8 (unstrict - strict)
+    paths:
+        - app
+        - routes
+```
+
+#### Install Larastan
+
+```bash
+composer require --dev larastan/larastan
+```
+
+#### Melakukan Analisis dengan Larastan
+
+```bash
+vendor/bin/phpstan analyse
+```
+
+### Testing Coverage
+
+Testing Coverage untuk melakukan pengujian yang mencakup semua kemungkinan pada kode program yang dibuat guna mengurangi kemungkinan bug yang akan tejadi pada saat sudah di production.
+
+#### Melakukan Pengujian dengan Coverage
+
+```bash
+php artisan test --coverage
+```
+
+### Melakukan Pengujian Spesifik
+
+```bash
+# php artisan test PATH_FILE_TEST
+php artisan test tests/Feature/Livewire/Auth/LoginLivewireTest.php
+
+php artisan test tests/Unit/Middleware/HandleInertiaRequestsTest.php
+
+php artisan test tests/Feature/Controllers/Home/HomeControllerTest.php
+
+php artisan test tests/Feature/Controllers/Auth/AuthControllerTest.php
+
+php artisan test tests/Feature/Controllers/HakAkses/HakAksesControllerTest.php
+```
+
+## Catatan Syntax
+
+```bash
+# 🎯 TYPE DEFINITIONS (TypeScript Support)
+npm i --save-dev @types/react
+
+# 🎨 UI COMPONENTS (shadcn/ui)
+npx shadcn@latest add checkbox
+npx shadcn@latest add tabs
+
+# 🔗 LARAVEL ZIGGY (Route Helper)
+php artisan ziggy:generate resources/js/ziggy.js
+
+# 🔧 ESLINT & CODE QUALITY
+
+# Core ESLint dan plugins
+npm install -D eslint-plugin-react eslint-plugin-react-hooks eslint-plugin-unused-imports @eslint/js globals
+
+# Babel parser dan preset
+npm install -D @babel/eslint-parser
+npm install -D @babel/preset-react
+
+# Formatter dan additional plugins
+npm install -D eslint-formatter-table
+npm install eslint-plugin-react-hooks --save-dev
+npm install --save-dev @eslint/js eslint-plugin-react eslint-plugin-react-hooks
+```
+
+## Template Tests
+
+```php
+<?php
+
+namespace Tests\Unit;
+
+use PHPUnit\Framework\Attributes\Test;
+use Tests\TestCase;
+
+class ToolsHelperTest extends TestCase
+{
+    #[Test]
+    public function contoh_format_pengujian()
+    {
+        // -------------------------------------
+        // Arrange (Persiapan)
+        // -------------------------------------
+        $nilai1 = 10;
+        $nilai2 = 20;
+        $expected = 30;
+
+        // -------------------------------------
+        // Act (Aksi)
+        // -------------------------------------
+        $hasil = $nilai1 + $nilai2;
+
+        // -------------------------------------
+        // Assert (Verifikasi)
+        // -------------------------------------
+        $this->assertEquals($expected, $hasil);
+    }
+}
+```
